@@ -1,0 +1,32 @@
+spring:
+  application:
+   name: idp-auth
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/idp_auth?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8
+    username: root
+    password: 123456
+
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.lihaiqi.idpauth.domain.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+server:
+  port: 9000
+
+logging:
+  level:
+    com.platform.idpauth.infrastructure.repository: DEBUG   # 你的 mapper 包路径
+    org.mybatis: DEBUG
+    org.apache.ibatis: DEBUG
