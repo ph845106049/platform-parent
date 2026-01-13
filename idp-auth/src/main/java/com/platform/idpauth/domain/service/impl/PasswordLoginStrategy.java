@@ -1,11 +1,10 @@
 package com.platform.idpauth.domain.service.impl;
 
 import com.platform.idpauth.application.command.LoginCommand;
-import com.platform.idpauth.domain.model.SysUser;
+import com.platform.common.model.model.SysUser;
 import com.platform.idpauth.domain.service.PasswordService;
 import com.platform.idpauth.domain.strategy.LoginStrategy;
 import com.platform.idpauth.infrastructure.repo.UserRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

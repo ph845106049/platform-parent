@@ -1,6 +1,6 @@
 package com.platform.idpauth.infrastructure.repo.impl;
 
-import com.platform.idpauth.domain.model.SysUser;
+import com.platform.common.model.model.SysUser;
 import com.platform.idpauth.infrastructure.repo.UserRepository;
 import com.platform.idpauth.infrastructure.repository.SysUserMapper;
 import lombok.RequiredArgsConstructor;

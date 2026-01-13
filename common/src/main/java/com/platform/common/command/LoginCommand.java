@@ -1,4 +1,4 @@
-package com.platform.idpauth.application.command;
+package com.platform.common.command;
 
 import com.platform.idpauth.domain.model.DeviceInfo;
 import lombok.Data;

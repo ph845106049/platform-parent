@@ -1,6 +1,6 @@
 package com.platform.idpauth.infrastructure.repo;
 
-import com.platform.idpauth.domain.model.SysUser;
+import com.platform.common.model.model.SysUser;
 
 /**
  * @author lhq

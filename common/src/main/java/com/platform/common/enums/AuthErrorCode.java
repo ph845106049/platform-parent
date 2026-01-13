@@ -1,4 +1,4 @@
-package com.platform.idpauth.domain.enums;
+package com.platform.common.enums;
 
 /**
  * @author lhq

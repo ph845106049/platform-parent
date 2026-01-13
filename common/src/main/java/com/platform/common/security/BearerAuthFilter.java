@@ -1,8 +1,7 @@
-package com.platform.idpauth.infrastructure.security;
+package com.platform.common.security;
 
-import com.platform.idpauth.application.TokenFacade;
-
-import com.platform.idpauth.domain.exception.AuthException;
+import com.platform.common.application.TokenFacade;
+import com.platform.common.exception.AuthException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -51,7 +50,7 @@ public class BearerAuthFilter extends OncePerRequestFilter {
         try {
             Long userId = tokenFacade.verify(token); // ✅ 放进 try
 
-            // ✅ verify 成功才塞上下文
+            // verify 成功才塞上下文
             var authorities = List.of(new SimpleGrantedAuthority("ROLE_USER"));
             var authentication = new UsernamePasswordAuthenticationToken(userId, null, authorities);
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -61,7 +60,7 @@ public class BearerAuthFilter extends OncePerRequestFilter {
             chain.doFilter(req, resp);
 
         } catch (AuthException ex) {
-            // ✅ 401 + 业务错误码
+            //  401 + 业务错误码
             write401(resp, ex.getCode().name(), ex.getMessage());
             return;
 

@@ -1,4 +1,4 @@
-package com.platform.common.utils;
+package com.platform.common.log;
 
 /**
  * @author lhq

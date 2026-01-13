@@ -1,6 +1,7 @@
-package com.platform.idpauth.domain.chain;
+package com.platform.common.check;
 
-import com.platform.idpauth.application.command.LoginCommand;
+
+import com.platform.common.command.LoginCommand;
 
 /**
  * @author lhq

@@ -1,7 +1,8 @@
-package com.platform.idpauth.application;
+package com.platform.common.application;
 
-import com.platform.idpauth.domain.model.DeviceInfo;
-import com.platform.idpauth.domain.model.TokenPair;
+
+import com.platform.common.model.model.DeviceInfo;
+import com.platform.common.model.model.TokenPair;
 
 /**
  * @author lhq

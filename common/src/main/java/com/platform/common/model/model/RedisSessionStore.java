@@ -1,4 +1,4 @@
-package com.platform.idpauth.domain.model;
+package com.platform.common.model.model;
 
 import com.platform.idpauth.infrastructure.store.SessionStore;
 import lombok.RequiredArgsConstructor;

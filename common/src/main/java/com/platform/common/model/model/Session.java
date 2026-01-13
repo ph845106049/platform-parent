@@ -1,4 +1,4 @@
-package com.platform.idpauth.domain.model;
+package com.platform.common.model.model;
 
 /**
  * @author lhq

@@ -1,4 +1,4 @@
-package com.platform.idpauth.application;
+package com.platform.common.application;
 
 import com.platform.idpauth.application.command.RegisterCommand;
 import com.platform.idpauth.domain.enums.AuthErrorCode;

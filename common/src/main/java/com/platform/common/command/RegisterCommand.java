@@ -1,4 +1,4 @@
-package com.platform.idpauth.application.command;
+package com.platform.common.command;
 
 import lombok.Data;
 

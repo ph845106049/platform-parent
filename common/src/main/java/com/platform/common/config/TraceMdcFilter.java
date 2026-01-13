@@ -1,4 +1,4 @@
-package com.platform.idpauth.config;
+package com.platform.common.config;
 
 /**
  * @author lhq

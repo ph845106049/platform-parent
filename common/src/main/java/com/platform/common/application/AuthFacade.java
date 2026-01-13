@@ -1,5 +1,6 @@
-package com.platform.idpauth.application;
+package com.platform.common.application;
 
+import com.platform.idpauth.application.TokenFacade;
 import com.platform.idpauth.application.command.LoginCommand;
 import com.platform.idpauth.domain.chain.AuthCheck;
 import com.platform.idpauth.domain.model.TokenPair;

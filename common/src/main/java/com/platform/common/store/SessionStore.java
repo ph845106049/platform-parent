@@ -1,4 +1,4 @@
-package com.platform.idpauth.infrastructure.store;
+package com.platform.common.store;
 
 import com.platform.common.model.model.DeviceInfo;
 import com.platform.common.model.model.TokenPair;

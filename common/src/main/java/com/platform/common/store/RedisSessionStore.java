@@ -1,4 +1,4 @@
-package com.platform.idpauth.infrastructure.store;
+package com.platform.common.store;
 
 /**
  * @author lhq
