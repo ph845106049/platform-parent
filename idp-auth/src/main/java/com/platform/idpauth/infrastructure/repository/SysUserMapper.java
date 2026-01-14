@@ -1,7 +1,7 @@
 package com.platform.idpauth.infrastructure.repository;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.platform.idpauth.domain.model.SysUser;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Update;
  * @date @date 2026年01月13日 12:03
  */
 @Mapper
-public interface SysUserMapper {
+public interface SysUserMapper extends BaseMapper<SysUser> {
 
     @Select("select id, username, password, enabled,locked from sys_user where username = #{username}")
     SysUser findByUsername(String username);
@@ -27,6 +27,5 @@ public interface SysUserMapper {
     @Select("select count(1) from sys_user where username = #{username}")
     int countByUsername(String username);
 
-    @Insert("insert into sys_user(username,password,real_name,mobile,email,enabled,locked,create_time) values(#{username},#{password},#{realName},#{mobile},#{email},1,0,now())")
-    void insert(SysUser user);
+    int insert(SysUser user);
 }

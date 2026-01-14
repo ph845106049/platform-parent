@@ -1,5 +1,6 @@
 package com.platform.idpauth.domain.model;
 
+import com.alibaba.fastjson.JSONObject;
 import com.platform.idpauth.infrastructure.store.SessionStore;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -22,17 +23,17 @@ public class RedisSessionStore implements SessionStore {
     private final StringRedisTemplate redisTemplate;
 
     @Override
-    public TokenPair create(Long userId, DeviceInfo device) {
+    public TokenPair create(SysUser user, DeviceInfo device) {
         String at = "at_" + UUID.randomUUID().toString().replace("-", "");
-        long expiresIn = 30 * 60;
-        redisTemplate.opsForValue().set("IDP:AT:" + at, userId.toString(), expiresIn, TimeUnit.SECONDS);
-        redisTemplate.opsForValue().set("IDP:USER:" + userId, at, expiresIn, TimeUnit.SECONDS);
+        long expiresIn = 24 * 60 * 60;
+        redisTemplate.opsForValue().set("IDP:AT:" + at, JSONObject.toJSONString(user), expiresIn, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set("IDP:USER:" + user.getId(), at, expiresIn, TimeUnit.SECONDS);
         return new TokenPair(
                 at,
                 null,                 // 先不实现 refreshToken
                 expiresIn,
                 device,
-                userId,
+                user,
                 LocalDateTime.now()
         );
     }
@@ -45,10 +46,16 @@ public class RedisSessionStore implements SessionStore {
     }
 
     @Override
-    public void revokeByUser(Long userId) {
-        String at = redisTemplate.opsForValue().get("IDP:USER:" + userId);
+    public SysUser getUser(String token) {
+        String v = redisTemplate.opsForValue().get("IDP:AT:" + token);
+        return v == null ? null : JSONObject.parseObject(v, SysUser.class);
+    }
+
+    @Override
+    public void revokeByUser(SysUser user) {
+        String at = redisTemplate.opsForValue().get("IDP:USER:" + user.getId());
         if (at != null) redisTemplate.delete("IDP:AT:" + at);
-        redisTemplate.delete("IDP:USER:" + userId);
+        redisTemplate.delete("IDP:USER:" + user.getId());
     }
 
     @Override

@@ -39,7 +39,7 @@ public class IdpTokenVerifier implements TokenVerifier {
         Map body = resp.getBody();
         return new AuthPrincipal(
                 Long.valueOf(body.get("userId").toString()),
-                body.get("username").toString()
+                body.get("username").toString(),""
         );
     }
 }

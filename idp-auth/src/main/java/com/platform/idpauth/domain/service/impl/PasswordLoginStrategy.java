@@ -29,9 +29,9 @@ public class PasswordLoginStrategy implements LoginStrategy {
     }
 
     @Override
-    public Long authenticate(LoginCommand cmd) {
+    public SysUser authenticate(LoginCommand cmd) {
         SysUser user = userRepository.findByUsername(cmd.getUsername());
         passwordService.verify(cmd.getPassword(),user);
-        return user.getId();
+        return user;
     }
 }

@@ -1,6 +1,7 @@
 package com.platform.idpauth.domain.strategy;
 
 import com.platform.idpauth.application.command.LoginCommand;
+import com.platform.idpauth.domain.model.SysUser;
 
 /**
  * @author lhq
@@ -12,6 +13,6 @@ public interface LoginStrategy {
 
     boolean support(String loginType);
 
-    Long authenticate(LoginCommand cmd);
+    SysUser authenticate(LoginCommand cmd);
 
 }

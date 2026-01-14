@@ -30,7 +30,7 @@ public class TokenPair {
     private DeviceInfo deviceInfo;
 
     /** 登录用户ID */
-    private Long userId;
+    private SysUser user;
 
     /** 创建时间 */
     private LocalDateTime issuedAt;

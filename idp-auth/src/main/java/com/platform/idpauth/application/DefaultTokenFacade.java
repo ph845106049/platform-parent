@@ -1,8 +1,10 @@
 package com.platform.idpauth.application;
 
+import com.platform.authclient.context.UserContext;
 import com.platform.idpauth.domain.enums.AuthErrorCode;
 import com.platform.idpauth.domain.exception.AuthException;
 import com.platform.idpauth.domain.model.DeviceInfo;
+import com.platform.idpauth.domain.model.SysUser;
 import com.platform.idpauth.domain.model.TokenPair;
 import com.platform.idpauth.infrastructure.store.SessionStore;
 
@@ -22,21 +24,21 @@ public class DefaultTokenFacade implements TokenFacade {
     private final SessionStore sessionStore;
 
     @Override
-    public TokenPair issue(Long userId, DeviceInfo device) {
-        sessionStore.revokeByUser(userId);
-        return sessionStore.create(userId, device);
+    public TokenPair issue(SysUser user, DeviceInfo device) {
+        sessionStore.revokeByUser(user);
+        return sessionStore.create(user, device);
     }
 
     @Override
-    public Long verify(String accessToken) {
+    public SysUser verify(String accessToken) {
         if (accessToken == null || accessToken.isBlank()) {
             throw new AuthException(AuthErrorCode.TOKEN_MISSING, "缺少token");
         }
-        Long userId = sessionStore.getUserId(accessToken);
-        if (userId == null) {
+        SysUser user = sessionStore.getUser(accessToken);
+        if (user == null) {
             throw new AuthException(AuthErrorCode.TOKEN_INVALID, "token无效或已过期");
         }
-        return userId;
+        return user;
     }
 
 

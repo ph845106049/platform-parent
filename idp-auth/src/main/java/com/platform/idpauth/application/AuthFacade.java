@@ -2,6 +2,7 @@ package com.platform.idpauth.application;
 
 import com.platform.idpauth.application.command.LoginCommand;
 import com.platform.idpauth.domain.chain.AuthCheck;
+import com.platform.idpauth.domain.model.SysUser;
 import com.platform.idpauth.domain.model.TokenPair;
 import com.platform.idpauth.domain.strategy.LoginStrategy;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class AuthFacade {
                 .findFirst()
                 .orElseThrow();
 
-        Long userId = strategy.authenticate(cmd);
-        return tokenFacade.issue(userId, cmd.getDeviceInfo());
+        SysUser user = strategy.authenticate(cmd);
+        return tokenFacade.issue(user, cmd.getDeviceInfo());
     }
 }

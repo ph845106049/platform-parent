@@ -1,5 +1,8 @@
 package com.platform.idpauth.domain.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -10,9 +13,11 @@ import java.time.LocalDateTime;
  * @description:
  * @date @date 2026年01月13日 12:05
  */
+@TableName("sys_user")
 @Data
 public class SysUser{
 
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /** 登录账号 */

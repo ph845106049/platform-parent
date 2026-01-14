@@ -1,6 +1,7 @@
 package com.platform.idpauth.application;
 
 import com.platform.idpauth.domain.model.DeviceInfo;
+import com.platform.idpauth.domain.model.SysUser;
 import com.platform.idpauth.domain.model.TokenPair;
 
 /**
@@ -11,9 +12,9 @@ import com.platform.idpauth.domain.model.TokenPair;
  */
 public interface TokenFacade {
 
-    TokenPair issue(Long userId, DeviceInfo device);
+    TokenPair issue(SysUser userId, DeviceInfo device);
 
-    Long verify(String accessToken);
+    SysUser verify(String accessToken);
 
     void logout(String accessToken);
 }

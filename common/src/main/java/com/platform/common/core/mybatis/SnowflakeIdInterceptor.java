@@ -12,7 +12,7 @@ import org.apache.ibatis.plugin.Signature;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-@Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})})
+@Intercepts({@Signature(type = Executor.class, method = "insert", args = {MappedStatement.class, Object.class})})
 public class SnowflakeIdInterceptor implements Interceptor {
 
     private final Snowflake snowflake = new Snowflake();
