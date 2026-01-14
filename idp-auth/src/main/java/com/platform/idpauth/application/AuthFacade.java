@@ -2,7 +2,7 @@ package com.platform.idpauth.application;
 
 import com.platform.idpauth.application.command.LoginCommand;
 import com.platform.idpauth.domain.chain.AuthCheck;
-import com.platform.common.model.model.TokenPair;
+import com.platform.idpauth.domain.model.TokenPair;
 import com.platform.idpauth.domain.strategy.LoginStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

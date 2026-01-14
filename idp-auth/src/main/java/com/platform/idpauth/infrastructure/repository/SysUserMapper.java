@@ -1,6 +1,6 @@
 package com.platform.idpauth.infrastructure.repository;
 
-import com.platform.common.model.model.SysUser;
+import com.platform.idpauth.domain.model.SysUser;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

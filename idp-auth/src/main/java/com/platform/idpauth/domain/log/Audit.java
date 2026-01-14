@@ -1,6 +1,6 @@
 package com.platform.idpauth.domain.log;
 
-import com.platform.common.enums.AuditEvent;
+import com.platform.idpauth.domain.enums.AuditEvent;
 
 import java.lang.annotation.*;
 

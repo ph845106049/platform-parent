@@ -1,6 +1,6 @@
 package com.platform.idpauth.domain.service;
 
-import com.platform.common.model.model.SysUser;
+import com.platform.idpauth.domain.model.SysUser;
 
 /**
  * @author lhq

@@ -30,3 +30,8 @@ logging:
     com.platform.idpauth.infrastructure.repository: DEBUG   # 你的 mapper 包路径
     org.mybatis: DEBUG
     org.apache.ibatis: DEBUG
+
+platform:
+  auth:
+    enabled: true
+    introspect-url: http://localhost:8080/me

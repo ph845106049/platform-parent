@@ -1,9 +1,8 @@
 package com.platform.idpauth.domain.chain;
 
-import com.platform.common.check.AuthCheck;
-import com.platform.common.command.LoginCommand;
-import com.platform.common.enums.AuthErrorCode;
-import com.platform.common.exception.AuthException;
+import com.platform.idpauth.application.command.LoginCommand;
+import com.platform.idpauth.domain.enums.AuthErrorCode;
+import com.platform.idpauth.domain.exception.AuthException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
