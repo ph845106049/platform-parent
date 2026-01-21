@@ -57,17 +57,5 @@ public class AuthController {
         return auth.substring(7);
     }
 
-    @GetMapping("/me")
-    public Map<String, Object> me() {
-        // 这里假设你已经在 idp-auth 的过滤器里把 userId 放进了 SecurityContext 或 MDC
-        // 先用最简单的方式：从 SecurityContext 取 principal
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        Map<String, Object> r = new HashMap<>();
-        r.put("userId", principal);
-        r.put("username", ""); // 有就填，没有先空
-        return r;
-    }
-
 }
 
