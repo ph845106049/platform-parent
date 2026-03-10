@@ -4,12 +4,13 @@ import com.platform.idpauth.application.command.RegisterCommand;
 import com.platform.idpauth.domain.enums.AuthErrorCode;
 import com.platform.idpauth.domain.exception.AuthException;
 import com.platform.idpauth.domain.model.SysUser;
-import com.platform.idpauth.infrastructure.repo.UserRepository;
+import com.platform.idpauth.infrastructure.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
+ * 类说明：该类型负责所属模块中的核心功能实现与协作。
  * @author lhq
  * @version 1.0
  * @description:
@@ -36,7 +37,15 @@ public class RegisterService {
         user.setEmail(cmd.getEmail());
         user.setEnabled(1);
         user.setLocked(0);
-
         userRepository.save(user);
     }
+
+    public void cancelAccount(String username) {
+        SysUser sysUser = userRepository.findByUsername(username);
+        if (sysUser == null) {
+            throw new AuthException(AuthErrorCode.USER_EXISTS, AuthErrorCode.USER_EXISTS.msg());
+        }
+        userRepository.cancelAccount(sysUser.getId());
+    }
+
 }

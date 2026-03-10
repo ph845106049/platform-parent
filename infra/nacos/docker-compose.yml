@@ -1,0 +1,21 @@
+services:
+  nacos:
+    image: nacos/nacos-server:v2.4.3
+    container_name: alive-nacos
+    environment:
+      - MODE=standalone
+      - NACOS_AUTH_ENABLE=false
+      - JAVA_OPT_EXT=--server.port=8858
+      - JVM_XMS=512m
+      - JVM_XMX=512m
+      - JVM_XMN=256m
+    ports:
+      - "8858:8858"
+      - "9858:9858"
+      - "9859:9859"
+    volumes:
+      - nacos-logs:/home/nacos/logs
+    restart: unless-stopped
+
+volumes:
+  nacos-logs:

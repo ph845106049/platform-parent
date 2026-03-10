@@ -24,6 +24,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+
+/**
+ * 类说明：该类型负责所属模块中的核心功能实现与协作。
+ */
 public class AuthController {
 
     private final AuthFacade authFacade;
@@ -48,6 +52,15 @@ public class AuthController {
     @PostMapping("/register")
     public void register(@RequestBody RegisterCommand cmd) {
         registerService.register(cmd);
+    }
+
+    @Audit(event = AuditEvent.CANCEL_ACCOUNT)
+    @PostMapping("/cancel")
+    public void cancelAccount() {
+        String username = SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName();
+        registerService.cancelAccount(username);
     }
 
     private String extractBearer(String auth) {

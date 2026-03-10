@@ -4,7 +4,7 @@ import com.platform.idpauth.domain.enums.AuthErrorCode;
 import com.platform.idpauth.domain.exception.AuthException;
 import com.platform.idpauth.domain.model.SysUser;
 import com.platform.idpauth.domain.service.PasswordService;
-import com.platform.idpauth.infrastructure.repo.UserRepository;
+import com.platform.idpauth.infrastructure.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 
 /**
+ * 类说明：该类型负责所属模块中的核心功能实现与协作。
  * @author lhq
  * @version 1.0
  * @description:

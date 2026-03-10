@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/alive?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8
+    username: root
+    password: 123456
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+  rabbitmq:
+    host: ${RABBITMQ_HOST:127.0.0.1}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+server:
+  port: 8200
+
+platform:
+  user-service:
+    base-url: http://localhost:8000
+  alert:
+    no-sign-cron: 0 0 9 * * ?

@@ -1,6 +1,7 @@
 package com.platform.idpauth.interfaces.exception;
 
 /**
+ * 类说明：该类型负责所属模块中的核心功能实现与协作。
  * @author lhq
  * @version 1.0
  * @description:
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 类说明：GlobalExceptionHandler 负责统一处理接口层抛出的异常并转换响应。
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {

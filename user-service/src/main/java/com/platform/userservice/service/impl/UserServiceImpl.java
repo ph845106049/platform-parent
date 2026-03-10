@@ -2,7 +2,7 @@ package com.platform.userservice.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.authclient.context.UserContext;
-import com.platform.common.common.model.dto.SysUserDTO;
+import com.platform.common.base.model.dto.SysUserDTO;
 import com.platform.userservice.entity.SysUserEntity;
 import com.platform.userservice.mapper.UserMapper;
 import com.platform.userservice.service.UserService;
@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 /**
+ * 类说明：该类型负责所属模块中的核心功能实现与协作。
  * @author lhq
  * @version 1.0
  * @description:

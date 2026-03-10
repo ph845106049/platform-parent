@@ -1,6 +1,7 @@
 package com.platform.idpauth.config;
 
 /**
+ * 类说明：该类型负责所属模块中的核心功能实现与协作。
  * @author lhq
  * @version 1.0
  * @description:
@@ -15,6 +16,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.util.UUID;
 
+/**
+ * 类说明：TraceMdcFilter 负责在请求链路中注入并维护 traceId 日志上下文。
+ */
 @Component
 public class TraceMdcFilter extends OncePerRequestFilter {
 

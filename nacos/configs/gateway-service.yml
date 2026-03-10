@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: idp-auth-route
+          uri: lb://idp-auth
+          predicates:
+            - Path=/api/auth/**
+        - id: user-service-route
+          uri: lb://user-service
+          predicates:
+            - Path=/api/user/**,/api/emergency/**
+        - id: sign-service-route
+          uri: lb://sign-service
+          predicates:
+            - Path=/api/sign/**
+        - id: ai-service-route
+          uri: lb://ai-service
+          predicates:
+            - Path=/api/ai/**
+
+server:
+  port: 7000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway

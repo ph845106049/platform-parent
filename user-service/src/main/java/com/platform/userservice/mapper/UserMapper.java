@@ -5,6 +5,7 @@ import com.platform.userservice.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
+ * 类说明：该类型负责所属模块中的核心功能实现与协作。
  * @author lhq
  * @version 1.0
  * @description:

@@ -10,6 +10,10 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @ConditionalOnProperty(prefix = "platform.auth", name = "enabled", havingValue = "true")
+
+/**
+ * 类说明：该类型负责所属模块中的核心功能实现与协作。
+ */
 public class AuthClientAutoConfiguration {
 
     @Bean

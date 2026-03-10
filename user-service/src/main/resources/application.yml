@@ -1,31 +1,20 @@
 spring:
   application:
     name: user-service
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/alive?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8
-    username: root
-    password: 123456
-
-  jackson:
-    serialization:
-      FAIL_ON_EMPTY_BEANS: false
-
-  data:
-    redis:
-      host: 127.0.0.1
-      port: 6379
-      password: 123456
-
-mybatis:
-  mapper-locations: classpath:/mapper/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-
-server:
-  port: 8000
-
-logging:
-  level:
-      com.platform.idpauth.infrastructure.repository: DEBUG
-      org.mybatis: DEBUG
-      org.apache.ibatis: DEBUG
+  config:
+    import:
+      - nacos:${spring.application.name}.yml
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8858}
+        namespace: ${NACOS_NAMESPACE:}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+        register-enabled: true
+      config:
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8858}
+        namespace: ${NACOS_NAMESPACE:}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+        file-extension: yml
+        refresh-enabled: true
+        fail-fast: true

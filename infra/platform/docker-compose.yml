@@ -1,0 +1,65 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: alive-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: alive
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    command: [
+      "--default-authentication-plugin=mysql_native_password",
+      "--character-set-server=utf8mb4",
+      "--collation-server=utf8mb4_general_ci"
+    ]
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.2
+    container_name: alive-redis
+    ports:
+      - "6379:6379"
+    command: [ "redis-server", "--requirepass", "123456" ]
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: alive-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    restart: unless-stopped
+
+  nacos:
+    image: nacos/nacos-server:v2.4.3
+    container_name: alive-nacos
+    environment:
+      MODE: standalone
+      NACOS_AUTH_ENABLE: "false"
+      JAVA_OPT_EXT: --server.port=8858
+      JVM_XMS: 512m
+      JVM_XMX: 512m
+      JVM_XMN: 256m
+    ports:
+      - "8858:8858"
+      - "9858:9858"
+      - "9859:9859"
+    volumes:
+      - nacos-logs:/home/nacos/logs
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+  redis-data:
+  rabbitmq-data:
+  nacos-logs:
