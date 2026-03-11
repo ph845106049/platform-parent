@@ -25,5 +25,7 @@ server:
 platform:
   user-service:
     base-url: http://localhost:8000
+  internal:
+    api-token: ${PLATFORM_INTERNAL_API_TOKEN:alive-internal-token}
   alert:
     no-sign-cron: 0 0 9 * * ?

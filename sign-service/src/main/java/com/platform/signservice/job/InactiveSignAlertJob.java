@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -38,6 +39,9 @@ public class InactiveSignAlertJob {
 
     @Value("${platform.user-service.base-url:http://localhost:8000}")
     private String userServiceBaseUrl;
+
+    @Value("${platform.internal.api-token:alive-internal-token}")
+    private String internalApiToken;
 
     /**
      * 每天 09:00 触发一次，扫描三天未签到用户。
@@ -68,7 +72,7 @@ public class InactiveSignAlertJob {
     @SuppressWarnings("unchecked")
     private List<Long> getOwnersWithActiveContacts() {
         String url = userServiceBaseUrl + "/api/emergency/owners-active-users";
-        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.GET, HttpEntity.EMPTY, Map.class);
+        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.GET, internalRequestEntity(), Map.class);
         Map<String, Object> body = response.getBody();
         if (body == null || body.get("data") == null) {
             return List.of();
@@ -79,8 +83,8 @@ public class InactiveSignAlertJob {
 
     @SuppressWarnings("unchecked")
     private void notifyEmergencyContacts(Long ownerId) {
-        String url = userServiceBaseUrl + "/api/emergency/active?userId=" + ownerId;
-        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.GET, HttpEntity.EMPTY, Map.class);
+        String url = userServiceBaseUrl + "/api/emergency/internal/active?userId=" + ownerId;
+        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.GET, internalRequestEntity(), Map.class);
         Map<String, Object> body = response.getBody();
         if (body == null || body.get("data") == null) {
             return;
@@ -117,5 +121,11 @@ public class InactiveSignAlertJob {
         logEntity.setAlertDate(LocalDate.now());
         logEntity.setCreatedAt(LocalDateTime.now());
         alertLogMapper.insert(logEntity);
+    }
+
+    private HttpEntity<Void> internalRequestEntity() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-Internal-Token", internalApiToken);
+        return new HttpEntity<>(headers);
     }
 }

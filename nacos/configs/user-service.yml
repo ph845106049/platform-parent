@@ -29,6 +29,8 @@ logging:
 platform:
   sms-service:
     base-url: http://localhost:8100
+  internal:
+    api-token: ${PLATFORM_INTERNAL_API_TOKEN:alive-internal-token}
   admin-contact:
     name: Alive管理员
     mobile: 13800000000
